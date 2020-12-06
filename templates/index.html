@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="description" content="uuip.org提供免费的IP查询服务,curl命令行查询IP, 数据更新及时, 数据准确是我们的目标"/>
+    <meta name="keywords" content="IP, 查IP, IP查询"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <title>IP查询 - uuip.org</title>
+<body>
+<div id="logo">
+    <a href="{{ url_for('index') }}">
+        <div class="logo_c">
+            {<span class="logo_f">uuip.org</span>}
+        </div>
+    </a>
+</div>
+<div id="main">
+    <div id="box">
+        <div id="search">
+            <form action="{{ url_for('main_') }}" method="get">
+                <input class="s1" type="text" name="address" autocomplete="off" placeholder="填入要查询的IP地址" value=""/>
+                <input class="s2" type="submit" value="Search" style="cursor:pointer"/>
+            </form>
+        </div>
+        <div id="info">
+            <table>
+                <tr>
+                    <td>
+                        <ol>
+                            <li>当前_IP:</li>
+                            <li>所属国家:</li>
+                            <li>国家编号:</li>
+                            <li>所属地区:</li>
+                            <li>所属城市:</li>
+                            <li>ISP厂商:</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <dl>
+                            <dt>{{ agr_['query'] }}</dt>
+                            <dt>{{ agr_['country'] }}</dt>
+                            {% if agr_['countryCode'] %}
+                                <dt>{{ agr_['countryCode'] }}</dt>
+                            {% else %}
+                                <dt>/</dt>
+                            {% endif %}
+                            {% if agr_['regionName'] %}
+                                <dt>{{ agr_['regionName'] }}</dt>
+                            {% else %}
+                                <dt>/</dt>
+                            {% endif %}
+                            {% if agr_['city'] %}
+                                <dt>{{ agr_['city'] }}</dt>
+                            {% else %}
+                                <dt>/</dt>
+                            {% endif %}
+                            {% if agr_['isp'] %}
+                                <dt>{{ agr_['isp'] }}</dt>
+                            {% else %}
+                                <dt>/</dt>
+                            {% endif %}
+                        </dl>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="other">
+            <dl>
+                <dt>#命令查询:</dt>
+                <dt>unix/linux ⇢ curl uuip.org</dt>
+                <dt>#其它推荐:</dt>
+                <dt>#V_P_N ⇢ <a href="https://pyvpn.net" target="_blank">https://pyvpn.net</a></dt>
+            </dl>
+        </div>
+    </div>
+</div>
+<div id="foot">
+    <span>uuip.org Copyright ©2018-2021 Free IP home search platform</span>
+</div>
+</body>
+</html>
