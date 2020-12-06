@@ -25,6 +25,11 @@ input {
     color: black;
 }
 
+input:focus {
+    outline:none;
+    border-bottom: 1px solid #292929;
+}
+
 a {
     color: blue;
     font-weight: bold;
@@ -88,22 +93,23 @@ a {
     overflow: hidden;
     border-radius: 6px;
     background-color: yellow;
-    border: 1px solid #a5a5a5;
+    border: 1px solid #a0a0a0;
     float: left;
     margin-top: 20px;
 }
 
 .s1 {
     margin-top: 0;
-    width: 227px;
+    width: 225px;
     height: auto;
     float: left;
-    line-height: 50px;
-    padding-left: 25px;
+    line-height: 47px;
+    padding-left: 27px;
     font-size: 13px;
     font-weight: bold;
     border: none;
-    border-right: 1px solid #cdcdcd;
+    border-right: 1px solid #b9b9b9;
+    border-bottom: 1px solid #ffffff;
 }
 
 .s2 {
