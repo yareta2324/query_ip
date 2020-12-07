@@ -6,7 +6,7 @@ from flask_limiter.util import get_remote_address
 
 app = Flask(__name__)
 limiter = Limiter(
-    app, key_func=get_remote_address, default_limits=["300 per day", "60 per hour"]
+    app, key_func=get_remote_address, default_limits=["48000 per day", "2000 per hour"]
 )
 
 
