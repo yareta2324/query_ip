@@ -42,7 +42,11 @@
                     <td>
                         <dl>
                             <dt>{{ agr_['query'] }}</dt>
-                            <dt>{{ agr_['country'] }}</dt>
+                            {% if agr_['country'] %}
+                                <dt>{{ agr_['country'] }}</dt>
+                            {% else %}
+                                <dt>/</dt>
+                            {% endif %}
                             {% if agr_['countryCode'] %}
                                 <dt>{{ agr_['countryCode'] }}</dt>
                             {% else %}
