@@ -16,11 +16,11 @@ def query(args, header=None):
     ssl_ = urllib.request.urlopen(result, context=ssl.SSLContext())
     json = eval(ssl_.read().decode('utf-8'))
     if 'fail' not in json['status']:
-        curl = ("IP     %s\n" % json['query'] + "地址:  %s\n" % json['country'] + "地区:  %s\n" % json['regionName'] +
-                "城市:  %s\n" % json['city'] + "ISP_:  %s\n" % json['isp'] + "VPN_:  https://pyvpn.net\n")
         if 'curl' not in str(header):
             return render_template('index.html', agr_=json)
         else:
+            curl = ("IP     %s\n" % json['query'] + "地址:  %s\n" % json['country'] + "地区:  %s\n" % json['regionName'] +
+                    "城市:  %s\n" % json['city'] + "ISP_:  %s\n" % json['isp'] + "VPN_:  https://pyvpn.net\n")
             return curl % json
     else:
         return "<h1>%s</h1>" % json['message']
