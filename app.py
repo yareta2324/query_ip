@@ -12,10 +12,7 @@ limiter = Limiter(
 @app.route('/', methods=['GET'])
 @limiter.limit("1/second", override_defaults=False)
 def index():
-    """
-    browser and the CURL route
-    :return:
-    """
+    """browser and the CURL route"""
     header = request.headers
     rel_ip = request.headers.get('X-Real-IP')
     return query(args=rel_ip, header=header)
@@ -24,10 +21,7 @@ def index():
 @app.route('/v1/', methods=['GET'])
 @limiter.limit("1/second", override_defaults=False)
 def main_():
-    """
-    Responding to form queries
-    :return:
-    """
+    """Responding to form queries"""
     request_ = request.args.get('address')
     if request_:
         return query(args=request_, header=None)

@@ -4,10 +4,7 @@ from flask import render_template
 
 
 def query(args, header=None):
-    """
-    Request IP query interface
-    :return:
-    """
+    """Request IP query interface"""
     url_ = 'https://ip-api.com/json/%s?lang=zh-CN' % args.strip()
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'
