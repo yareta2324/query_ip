@@ -10,10 +10,10 @@ limiter = Limiter(
 
 
 @app.route('/', methods=['GET'])
-@limiter.limit("2/second", override_defaults=False)
+@limiter.limit("1/second", override_defaults=False)
 def index():
     """
-    浏览器及CURL路由入口
+    browser and the CURL route
     :return:
     """
     curl, remote = request.headers, request.headers.get('X-Real-IP')
@@ -24,7 +24,7 @@ def index():
 @limiter.limit("1/second", override_defaults=False)
 def main_():
     """
-    独立路由,响应表单查询
+    Responding to form queries
     :return:
     """
     request_ = request.args.get('address')
