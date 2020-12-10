@@ -1,8 +1,7 @@
-import ssl
-import urllib.request
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, redirect, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from common.base_ import query
 
 app = Flask(__name__)
 limiter = Limiter(
@@ -36,25 +35,5 @@ def main_():
     pass
 
 
-def query(args, header=None):
-    """
-    此函数方法用于API查询
-    :return: 
-    """""
-    url = 'http://ip-api.com/json/%s?lang=zh-CN' % args.strip()
-    result = urllib.request.Request(url)
-    ssl_ = urllib.request.urlopen(result, context=ssl.SSLContext())
-    json = eval(ssl_.read().decode('utf-8'))
-    if 'fail' not in json['status']:
-        curl = ("IP     %s\n" % json['query'] + "地址:  %s\n" % json['country'] + "地区:  %s\n" % json['regionName'] +
-                "城市:  %s\n" % json['city'] + "ISP_:  %s\n" % json['isp'] + "VPN_:  https://pyvpn.net\n")
-        if 'curl' not in str(header):
-            return render_template('index.html', agr_=json)
-        else:
-            return curl % json
-    else:
-        return "<h1>%s</h1>" % json['message']
-
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=False)
+    app.run(host='127.0.0.1', debug=False)
