@@ -5,25 +5,29 @@ from common.base_ import query
 
 app = Flask(__name__)
 limiter = Limiter(
-    app,
-    key_func=get_remote_address,
-    default_limits=["48000 per day", "2000 per hour"]
+    app, key_func=get_remote_address, default_limits=["48000 per day", "2000 per hour"]
 )
 
 
 @app.route('/', methods=['GET'])
 @limiter.limit("1/second", override_defaults=False)
 def index():
-    """browser and the CURL route"""
-    rel_ip = request.headers.get('X-Real-IP')
+    """
+    browser and the CURL route
+    :return:
+    """
     header = request.headers
+    rel_ip = request.headers.get('X-Real-IP')
     return query(args=rel_ip, header=header)
 
 
 @app.route('/v1/', methods=['GET'])
 @limiter.limit("1/second", override_defaults=False)
 def main_():
-    """Responding to form queries"""
+    """
+    Responding to form queries
+    :return:
+    """
     request_ = request.args.get('address')
     if request_:
         return query(args=request_, header=None)
