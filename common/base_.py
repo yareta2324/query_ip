@@ -9,7 +9,10 @@ def query(args, header=None):
     :return: 
     """""
     url = 'http://ip-api.com/json/%s?lang=zh-CN' % args.strip()
-    result = urllib.request.Request(url)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'
+    }
+    result = urllib.request.Request(url, headers=headers)
     ssl_ = urllib.request.urlopen(result, context=ssl.SSLContext())
     json = eval(ssl_.read().decode('utf-8'))
     if 'fail' not in json['status']:
